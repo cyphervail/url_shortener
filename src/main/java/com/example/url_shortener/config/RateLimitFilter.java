@@ -32,8 +32,15 @@ public class RateLimitFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-        String clientIp = request.getRemoteAddr();  // FIXED
-        Bucket bucket = resolveBucket(clientIp);
+        String uri = request.getRequestURI();
+        String clientIp = request.getHeader("X-Forwarded-For");
+
+        if (ip == null || ip.isEmpty()) {
+            return request.getRemoteAddr();
+        }
+
+        String key = clientIp + ":" + uri;
+        Bucket bucket = resolveBucket(key);
 
         if (bucket.tryConsume(1)) {
             response.setHeader("X-Rate-Limit-Remaining", String.valueOf(bucket.getAvailableTokens()));
