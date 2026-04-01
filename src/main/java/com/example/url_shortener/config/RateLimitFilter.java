@@ -36,7 +36,7 @@ public class RateLimitFilter extends OncePerRequestFilter {
         String clientIp = request.getHeader("X-Forwarded-For");
 
         if (clientIp == null || clientIp.isEmpty()) {
-            return request.getRemoteAddr();
+            clientIp= request.getRemoteAddr();
         }
 
         String key = clientIp + ":" + uri;
