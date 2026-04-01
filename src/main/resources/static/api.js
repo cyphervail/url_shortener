@@ -8,7 +8,7 @@
  *   POST /shortUrl  →  { longUrl, expiredAt? }  →  { shortUrl }
  */
 
-const API_BASE = 'http://localhost:8080';
+const API_BASE = '';
 
 /**
  * @param {string} longUrl
