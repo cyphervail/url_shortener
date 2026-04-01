@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Linkly — URL Shortener</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="header">
+        <div class="wordmark">Linkly<em>.</em></div>
+        <p class="header-sub">Long URLs, made small.</p>
+      </header>
+
+      <!-- Input section -->
+      <section class="input-section">
+        <div class="input-wrapper" id="inputWrapper">
+          <input
+            id="urlInput"
+            class="url-field"
+            type="url"
+            placeholder="Paste your URL here"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button class="go-btn" id="shortenBtn" aria-label="Shorten URL">
+            <span class="go-label">Go</span>
+            <span class="go-arrow">→</span>
+          </button>
+        </div>
+        <p class="error-msg" id="errorMsg" role="alert"></p>
+      </section>
+
+      <!-- Expiry selector -->
+      <section class="expiry-section">
+        <span class="expiry-label">Link expires</span>
+        <div class="expiry-pills" id="expiryChips">
+          <button class="pill" data-days="1">1 day</button>
+          <button class="pill active" data-days="7">1 week</button>
+          <button class="pill" data-days="30">1 month</button>
+          <button class="pill" data-days="">Never</button>
+        </div>
+      </section>
+
+      <!-- Result (hidden until success) -->
+      <section class="result-section" id="resultCard" aria-live="polite">
+        <div class="result-inner">
+          <div class="result-left">
+            <span class="result-eyebrow">Your short link</span>
+            <a
+              class="result-url"
+              id="resultUrl"
+              target="_blank"
+              rel="noopener"
+            ></a>
+            <span class="result-expiry" id="expiryBadge"></span>
+          </div>
+          <button class="copy-btn" id="copyBtn">
+            <span id="copyLabel">Copy</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- History (hidden until first item) -->
+      <section class="history-section" id="historySection">
+        <div class="history-header">
+          <span class="history-title">Recent</span>
+          <button class="clear-btn" id="clearBtn">Clear all</button>
+        </div>
+        <ul class="history-list" id="historyList"></ul>
+      </section>
+    </main>
+
+    <script src="/api.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
